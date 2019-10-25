@@ -13,17 +13,21 @@
   width: 50px;
   height: 50px;
   position: absolute;
-  background-color: red;
+  background-image: url("assets/image/car.png");
+  background-size: 50px 50px;
+  background-repeat:no-repeat;
   top:200px;
 }
 
 #wall
 {
   width: 50px;
-  height: 50px;
+  height: 100px;
   position: absolute;
-  background-color: red;
-  top:200px;
+  background-image: url("assets/image/wall.png");
+  background-repeat:no-repeat;
+  background-size:cover;
+  top:150px;
   right:0px;
 }
 #explosion
@@ -69,6 +73,7 @@ async function run()
 
   var elem = document.getElementById("car");
   var explosion = document.getElementById("explosion");
+  explosion.style.display = "none";
   var pos = 0;
   var delayInMilliseconds = 1000;
 
