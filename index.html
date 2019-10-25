@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<style>
+#container
+{
+  width: 500px;
+  height: 300px;
+  position: relative;
+  background: rgba(216, 236, 149, 0.86);
+}
+#car
+{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+  top:200px;
+}
+
+#wall
+{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+  top:200px;
+  right:0px;
+}
+#explosion
+{
+    width: 100px;
+    height: 100px;
+    background-image: url("assets/image/explosion.gif");
+    background-repeat:no-repeat;
+    background-size:cover;
+    position: absolute;
+    top:190px;
+    right:10px;
+    display:none;
+}
+</style>
+<body>
+
+<p>
+<button onclick="run()">run</button>
+</p>
+
+<div id ="container">
+<div id ="car"></div>
+<div id ="wall"></div>
+<div id ="explosion"></div>
+</div>
+
+<script>
+
+    async function delay(delayInms)
+    {
+      return new Promise(resolve  => {
+        setTimeout(() => {
+          resolve(2);
+        }, delayInms);
+      });
+    }
+async function run()
+{
+  var car_driving = new Audio('assets/sound/car_driving.mp3');
+  var car_carsh = new Audio('assets/sound/car_crash.mp3');
+
+
+  var elem = document.getElementById("car");
+  var explosion = document.getElementById("explosion");
+  var pos = 0;
+  var delayInMilliseconds = 1000;
+
+  for(t=1;t>0;t=t+0.01)
+  {
+    car_driving.play();
+  	d=(1/2)*(-3.5)*(t^2)+((100*1000)/3600)*t;
+   let delayres = await delay(10);
+   pos=pos+1.5;
+    elem.style.left = pos + 'px';
+    if(d>=100)
+    {
+      explosion.style.display = "block";
+      car_driving.pause();
+      car_carsh.play();
+      break;
+    }
+  }
+
+}
+</script>
+
+</body>
+</html>
