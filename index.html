@@ -21,7 +21,7 @@
 
 #wall
 {
-  width: 50px;
+  width: 55px;
   height: 100px;
   position: absolute;
   background-image: url("assets/image/wall.png");
@@ -77,10 +77,13 @@ async function run()
   var pos = 0;
   for(t=1;t>0;t=t+0.01)
   {
+    pos_change=100;
     car_driving.play();
   	d=(1/2)*(-3.5)*(t^2)+((100*1000)/3600)*t;
-   let delayres = await delay(10);
-   pos=pos+1.5;
+    pos_change=(pos_change-d)/25;
+
+    let delayres = await delay(10);
+    pos=pos+pos_change;
     elem.style.left = pos + 'px';
     if(d>=100)
     {
